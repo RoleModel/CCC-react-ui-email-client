@@ -3,6 +3,7 @@ import { storiesOf, action, linkTo } from '@kadira/storybook';
 import Button from './Button';
 import Welcome from './Welcome';
 import Email from '../components/Email';
+import '../index.css';
 
 storiesOf('Welcome', module)
   .add('to Storybook', () => (
@@ -19,5 +20,5 @@ storiesOf('Button', module)
 
 storiesOf('Email', module)
   .add('default', () => (
-    <Email email={{from: 'asdf', content: 'asoidfoqbpibegiubeqrg'}}/>
+    <Email email={{from: 'bill@gmail.com', subject: 'Hi there', content: 'How are you doing?'}}/>
   ));

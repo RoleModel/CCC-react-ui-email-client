@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.3.1",
+    "react-tabs": "^0.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "background-sass-watcher": "./node_modules/.bin/node-sass --watch --recursive src -o src/stylesheets & WATCH_SASS_PID=$!",
+    "compile-sass": "./node_modules/.bin/node-sass --recursive src -o src",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
   },
@@ -24,3 +27,4 @@
     "extends": "./node_modules/react-scripts/config/eslint.js"
   }
 }
+
