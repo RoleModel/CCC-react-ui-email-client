@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import {Tabs, Tab} from 'material-ui/Tabs';
+import {List} from 'material-ui/List';
 import Email from './Email';
 import CssTransitionGroup from 'react-addons-css-transition-group';
 
@@ -42,7 +44,7 @@ class EmailList extends Component {
   }
 
   renderList(list) {
-    return list.map((email, i) => <Email email={email} key={email.from} toggleDisplay={this.toggleDisplay.bind(this)} deleteEmail={this.deleteEmail.bind(this)} isTouch={this.props.isTouch}/>)
+    return list.map((email, i) => <Email email={email} key={`${email.from}-${i.toString()}`} toggleDisplay={this.toggleDisplay.bind(this)} deleteEmail={this.deleteEmail.bind(this)} isTouch={this.props.isTouch}/>)
   }
 
   render() {
@@ -50,21 +52,19 @@ class EmailList extends Component {
     const sent = this.sentbox()
     return (
       <Tabs>
-        <TabList>
-          <Tab>Received</Tab>
-          <Tab>Sent</Tab>
-        </TabList>
-        <TabPanel>
+        <Tab label="Received">
           <CssTransitionGroup
               transitionName="example"
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}>
-            {this.renderList(received)}
+            <List>
+              {this.renderList(received)}
+            </List>
           </CssTransitionGroup>
-        </TabPanel>
-        <TabPanel>
+        </Tab>
+        <Tab label="Sent">
           {this.renderList(sent)}
-        </TabPanel>
+        </Tab>
       </Tabs>
     );
   }

@@ -9,14 +9,17 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "datetime-picker": "^0.6.0",
+    "jquery": "^3.1.0",
+    "material-ui": "^0.15.4",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-modal": "^1.4.0",
-    "react-native-swipeout": "^2.0.12",
     "react-select2": "^4.0.1",
     "react-swipe": "^5.0.5",
     "react-swipeable": "^3.6.0",
     "react-tabs": "^0.8.0",
+    "react-tap-event-plugin": "^1.0.0",
     "swipe-js-iso": "^2.0.3"
   },
   "scripts": {

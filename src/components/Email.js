@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
 import Swipeable from 'react-swipeable';
 
 class Email extends Component {
@@ -6,7 +9,7 @@ class Email extends Component {
   renderEmail() {
     const email = this.props.email
     return (
-      <div className="email" onClick={this.props.toggleDisplay.bind(null, email)}>
+      <div className="email">
         <span className="email-from">{email.from}</span>
         <span className="email-subject">{email.subject}</span>
         { !this.props.isTouch ? this.renderButtons.bind(this)() : null }
@@ -17,9 +20,14 @@ class Email extends Component {
 
   renderTouch() {
     return (
-      <Swipeable onSwipedLeft={this.props.deleteEmail.bind(null, this.props.email)} >
-        {this.renderEmail.bind(this)()}
-      </Swipeable>
+      <div>
+        <ListItem leftAvatar={<Avatar src={this.props.email.profile} />} onClick={this.props.toggleDisplay.bind(null, this.props.email)}>
+          <Swipeable onSwipedLeft={this.props.deleteEmail.bind(null, this.props.email)} >
+            {this.renderEmail.bind(this)()}
+          </Swipeable>
+        </ListItem>
+        <Divider />
+      </div>
     )
   }
 

@@ -5,6 +5,7 @@ import Welcome from './Welcome';
 import Email from '../components/Email';
 import EmailComposer from '../components/EmailComposer';
 import SelectElement from './SelectElement';
+import DatePicker from './DatePicker';
 import '../index.css';
 
 storiesOf('Welcome', module)
@@ -36,4 +37,9 @@ storiesOf('EmailComposer', module)
 storiesOf('SelectElement', module)
   .add('default', () => (
     <SelectElement />
+  ))
+
+storiesOf('DatePicker', module)
+  .add('default', () => (
+    <DatePicker />
   ))

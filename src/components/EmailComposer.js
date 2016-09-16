@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RaisedButton } from 'material-ui'
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -24,7 +25,7 @@ class EmailComposer extends Component {
   render() {
     return (
       <div className="modal-wrapper">
-        <button className="compose-email" onClick={this.openModal.bind(this)}>Compose</button>
+        <RaisedButton onClick={this.openModal.bind(this)} label="Compose"/>
         <Modal isOpen={this.props.modalIsOpen}
                onRequestClose={this.closeModal.bind(this)}
                style={customStyles}>
