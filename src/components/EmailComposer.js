@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { RaisedButton } from 'material-ui'
+import { FloatingActionButton, Dialog } from 'material-ui'
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -13,6 +14,13 @@ const customStyles = {
   }
 }
 
+const buttonStyles = {
+  bottom: '20px',
+  position: 'fixed',
+  right: '20px',
+  zIndex: 20
+};
+
 class EmailComposer extends Component {
   openModal() {
     this.props.setState({modalIsOpen: true});
@@ -25,7 +33,9 @@ class EmailComposer extends Component {
   render() {
     return (
       <div className="modal-wrapper">
-        <RaisedButton onClick={this.openModal.bind(this)} label="Compose"/>
+        <FloatingActionButton style={buttonStyles} onClick={this.openModal.bind(this)} label="Compose">
+          <ContentAdd />
+        </FloatingActionButton>
         <Modal isOpen={this.props.modalIsOpen}
                onRequestClose={this.closeModal.bind(this)}
                style={customStyles}>
