@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Email from './Email';
+import CssTransitionGroup from 'react-addons-css-transition-group';
 
 class EmailList extends Component {
 
@@ -19,6 +20,19 @@ class EmailList extends Component {
     this.props.setState({emails: updatedEmails})
   }
 
+  deleteEmail(email, event) {
+    event.stopPropagation()
+    const emails = this.props.emails
+    const index = emails.indexOf(email)
+
+    const updatedEmails = [
+      ...emails.slice(0, index),
+      ...emails.slice(index + 1)
+    ]
+
+    this.props.setState({emails: updatedEmails})
+  }
+
   inbox() {
     return this.props.emails.filter(email => email.from !== this.props.myEmail)
   }
@@ -28,7 +42,7 @@ class EmailList extends Component {
   }
 
   renderList(list) {
-    return list.map((email, i) => <Email email={email} key={i} toggleDisplay={this.toggleDisplay.bind(this)}/>)
+    return list.map((email, i) => <Email email={email} key={email.from} toggleDisplay={this.toggleDisplay.bind(this)} deleteEmail={this.deleteEmail.bind(this)} isTouch={this.props.isTouch}/>)
   }
 
   render() {
@@ -41,7 +55,12 @@ class EmailList extends Component {
           <Tab>Sent</Tab>
         </TabList>
         <TabPanel>
-          {this.renderList(received)}
+          <CssTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
+            {this.renderList(received)}
+          </CssTransitionGroup>
         </TabPanel>
         <TabPanel>
           {this.renderList(sent)}

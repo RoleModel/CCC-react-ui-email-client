@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import emails from '../data/emails';
 import EmailList from './EmailList';
+import EmailComposer from './EmailComposer';
 
 class App extends Component {
 
@@ -11,15 +12,22 @@ class App extends Component {
         email.isShown = false
         return email
       }),
-      myEmail: 'myself@me.com'
+      myEmail: 'myself@me.com',
+      modalIsOpen: false,
+      isTouch: true
     }
+  }
+
+  toggleTouch(event) {
+    this.setState({isTouch: !this.state.isTouch})
   }
 
   render() {
     return (
       <div className="App">
-        <a href="#" className="compose-email">Compose</a>
-        <EmailList setState={this.setState.bind(this)} emails={this.state.emails} myEmail={this.state.myEmail}/>
+        <EmailComposer setState={this.setState.bind(this)} modalIsOpen={this.state.modalIsOpen}/>
+        <EmailList setState={this.setState.bind(this)} emails={this.state.emails} myEmail={this.state.myEmail} isTouch={this.state.isTouch}/>
+        <button onClick={this.toggleTouch.bind(this)}>Toggle touch</button>
       </div>
     );
   }

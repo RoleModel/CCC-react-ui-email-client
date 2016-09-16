@@ -3,6 +3,8 @@ import { storiesOf, action, linkTo } from '@kadira/storybook';
 import Button from './Button';
 import Welcome from './Welcome';
 import Email from '../components/Email';
+import EmailComposer from '../components/EmailComposer';
+import SelectElement from './SelectElement';
 import '../index.css';
 
 storiesOf('Welcome', module)
@@ -22,3 +24,16 @@ storiesOf('Email', module)
   .add('default', () => (
     <Email email={{from: 'bill@gmail.com', subject: 'Hi there', content: 'How are you doing?'}}/>
   ));
+
+storiesOf('EmailComposer', module)
+  .add('closed', () => (
+    <EmailComposer setState={action('setState')} modalIsOpen={false}/>
+  ))
+  .add('opened', () => (
+    <EmailComposer setState={action('setState')} modalIsOpen={true}/>
+  ));
+
+storiesOf('SelectElement', module)
+  .add('default', () => (
+    <SelectElement />
+  ))

@@ -23,9 +23,21 @@ span.email-subject {
   display: inline-block;
 }
 
+button {
+  background: grey;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
 .compose-email {
   padding: 5px 10px;
-  background-color: blue;
+  background-color: #4285f4;
   border-radius: 4px;
   color: white;
   display: inline-block;
@@ -35,4 +47,31 @@ span.email-subject {
 
 .compose-email:hover {
   background-color: darkblue;
+  cursor: pointer;
+}
+
+.composer-text {
+  height: 300px;
+  width: 400px;
+  border: 2px solid;
+  border-radius: 4px;
+  background: red;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
