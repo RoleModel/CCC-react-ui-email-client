@@ -3,6 +3,26 @@ import Swipeable from 'react-swipeable';
 
 class Email extends Component {
 
+  renderEmail() {
+    const email = this.props.email
+    return (
+      <div className="email" onClick={this.props.toggleDisplay.bind(null, email)}>
+        <span className="email-from">{email.from}</span>
+        <span className="email-subject">{email.subject}</span>
+        { !this.props.isTouch ? this.renderButtons.bind(this)() : null }
+        { email.isShown ? <p ref="content">{email.content}</p> : null }
+      </div>
+    )
+  }
+
+  renderTouch() {
+    return (
+      <Swipeable onSwipedLeft={this.props.deleteEmail.bind(null, this.props.email)} >
+        {this.renderEmail.bind(this)()}
+      </Swipeable>
+    )
+  }
+
   renderButtons() {
     return (
       <div style={{float: 'right'}}>
@@ -13,15 +33,11 @@ class Email extends Component {
   }
 
   render() {
-    const email = this.props.email
-    return (
-      <Swipeable onSwipedLeft={this.props.deleteEmail.bind(null, this.props.email)} className="email" onClick={this.props.toggleDisplay.bind(null, email)}>
-        <span className="email-from">{email.from}</span>
-        <span className="email-subject">{email.subject}</span>
-        { this.props.isTouch ? null : this.renderButtons.bind(this)() }
-        { email.isShown ? <p ref="content">{email.content}</p> : null }
-      </Swipeable>
-    );
+    if(this.props.isTouch) {
+      return this.renderTouch.bind(this)()
+    } else {
+      return this.renderEmail.bind(this)()
+    }
   }
 }
 
