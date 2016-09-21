@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 import emails from '../data/emails';
 import EmailList from './EmailList';
 import EmailComposer from './EmailComposer';
@@ -29,7 +30,7 @@ class App extends Component {
         <div className="App">
           <EmailComposer setState={this.setState.bind(this)} modalIsOpen={this.state.modalIsOpen}/>
           <EmailList setState={this.setState.bind(this)} emails={this.state.emails} myEmail={this.state.myEmail} isTouch={this.state.isTouch}/>
-          <button onClick={this.toggleTouch.bind(this)}>Toggle touch</button>
+          <RaisedButton label="Toggle touch" onClick={this.toggleTouch.bind(this)} />
         </div>
       </MuiThemeProvider>
     );

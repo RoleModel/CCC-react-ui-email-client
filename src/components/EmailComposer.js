@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
-import { FloatingActionButton, Dialog } from 'material-ui'
+import { FloatingActionButton, Dialog, TextField, RaisedButton } from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import Modal from 'react-modal';
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-}
 
 const buttonStyles = {
   bottom: '20px',
@@ -36,14 +24,13 @@ class EmailComposer extends Component {
         <FloatingActionButton style={buttonStyles} onClick={this.openModal.bind(this)} label="Compose">
           <ContentAdd />
         </FloatingActionButton>
-        <Modal isOpen={this.props.modalIsOpen}
-               onRequestClose={this.closeModal.bind(this)}
-               style={customStyles}>
-          <h2>Composer</h2>
-          <textarea className="composer-text">
-
-          </textarea>
-        </Modal>
+        <Dialog title="Email Composer" open={this.props.modalIsOpen} onRequestClose={this.closeModal.bind(this)}>
+          <TextField
+            hintText="Type your message"
+            multiLine={true}
+            fullWidth={true} />
+          <RaisedButton label="Send" primary={true} style={{float: "right"}} />
+        </Dialog>
       </div>
     )
   }
